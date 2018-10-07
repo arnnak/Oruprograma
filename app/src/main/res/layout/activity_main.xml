@@ -17,13 +17,13 @@
             android:layout_height="46dp"
             android:layout_marginLeft="120dp"
             android:layout_marginTop="40dp"
-            android:text="TextView" />
+            android:text="Vietove" />
 
         <TextView
             android:id="@+id/aprasymas"
             android:layout_width="match_parent"
             android:layout_height="46dp"
-            android:text="TextView" />
+            android:text="Aprasymas" />
 
         <ImageView
             android:id="@+id/ikona"
@@ -36,49 +36,49 @@
             android:id="@+id/temperatura"
             android:layout_width="match_parent"
             android:layout_height="33dp"
-            android:text="TextView" />
+            android:text="Temperatura" />
 
         <TextView
             android:id="@+id/vejas"
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            android:text="TextView" />
+            android:text="Vejas" />
 
         <TextView
             android:id="@+id/debesuotumas"
             android:layout_width="match_parent"
             android:layout_height="31dp"
-            android:text="TextView" />
+            android:text="Debesuotumas" />
 
         <TextView
             android:id="@+id/slegis"
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            android:text="TextView" />
+            android:text="Slegis" />
 
         <TextView
             android:id="@+id/dregme"
             android:layout_width="match_parent"
             android:layout_height="29dp"
-            android:text="TextView" />
+            android:text="Dregme" />
 
         <TextView
             android:id="@+id/sauletekis"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:text="TextView" />
+            android:text="Sauletekis" />
 
         <TextView
             android:id="@+id/saulelidis"
             android:layout_width="match_parent"
             android:layout_height="34dp"
-            android:text="TextView" />
+            android:text="Saulelidis" />
 
         <TextView
             android:id="@+id/atnaujinimas"
             android:layout_width="match_parent"
             android:layout_height="37dp"
-            android:text="TextView" />
+            android:text="Atnaujinimo laikas" />
 
     </LinearLayout>
 </LinearLayout>
