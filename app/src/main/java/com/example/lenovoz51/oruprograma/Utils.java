@@ -8,7 +8,7 @@ import org.json.JSONObject;
  */
 
 public class Utils {
-    public static final String BASE_URL = "http://api.openweathermap.org/data/2.5/weather?q=Kaunas&appid=07ea1ba79a211b3d8a39201edc6f771b";
+    public static final String BASE_URL = "http://api.openweathermap.org/data/2.5/weather?q=Kaunas&units=metric&appid=07ea1ba79a211b3d8a39201edc6f771b";
     public static final String ICON_URL = "http://openweathermap.org/img/w/";
 
     public static JSONObject getObject(String name, JSONObject jsonObject) throws JSONException{
