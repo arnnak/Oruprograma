@@ -1,5 +1,6 @@
 package com.example.lenovoz51.oruprograma;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class JsonWeatherParser extends AppCompatActivity {
     private TextView temp;
     private TextView cloud;
     private Weather weather;
+    private String miestas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +53,10 @@ public class JsonWeatherParser extends AppCompatActivity {
         updated = (TextView) findViewById(R.id.atnaujinimas);
         weather = new Weather();
         cloud = (TextView)findViewById(R.id.debesuotumas);
-        //gavimas();
+        Intent intent = getIntent();
+        miestas = intent.getStringExtra("miestas");
 
-        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Utils.BASE_URL, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Utils.BASE_URL+miestas+Utils.LOGIN_URL, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
 

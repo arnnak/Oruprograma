@@ -1,29 +1,40 @@
 package com.example.lenovoz51.oruprograma;
 
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
 public class MainActivity extends AppCompatActivity {
-
+    private EditText city;
+    private Button tvirtinti;
+    private String miestas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vietove_layout);
+        setContentView(R.layout.vietove);
 
+        city = (EditText)findViewById(R.id.city);
+        tvirtinti = (Button)findViewById(R.id.patvirtinti);
+
+        tvirtinti.setOnClickListener(tvirtinticlick);
     }
+    View.OnClickListener tvirtinticlick = new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            miestas = city.getText().toString();
+            if(miestas.toCharArray().length !=0){
+                Intent intent = new Intent(MainActivity.this,JsonWeatherParser.class);
+                intent.putExtra("miestas",miestas);
+                MainActivity.this.startActivity(intent);
+            }
+            else{
+                Toast.makeText(MainActivity.this,"Iveskite miesta", Toast.LENGTH_LONG).show();
+            }
+        }
+    };
 }
