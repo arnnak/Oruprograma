@@ -5,6 +5,7 @@ import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +16,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 /**
  * Created by Lenovo Z51 on 2018-10-07.
@@ -55,6 +59,16 @@ public class JsonWeatherParser extends AppCompatActivity {
         cloud = (TextView)findViewById(R.id.debesuotumas);
         Intent intent = getIntent();
         miestas = intent.getStringExtra("miestas");
+        humidity.setVisibility(View.VISIBLE);
+        temp.setVisibility(View.VISIBLE);
+        dec.setVisibility(View.VISIBLE);
+        sunrise.setVisibility(View.VISIBLE);
+        sunset.setVisibility(View.VISIBLE);
+        preasure.setVisibility(View.VISIBLE);
+        wind.setVisibility(View.VISIBLE);
+        cloud.setVisibility(View.VISIBLE);
+        iconview.setVisibility(View.VISIBLE);
+        updated.setVisibility(View.VISIBLE);
 
         JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Utils.BASE_URL+miestas+Utils.LOGIN_URL, new Response.Listener<JSONObject>() {
             @Override
@@ -83,7 +97,7 @@ public class JsonWeatherParser extends AppCompatActivity {
 
                     JSONObject windobj = Utils.getObject("wind", jsonObject);
                     weather.wind.setSpeed(Utils.getfloat("speed", windobj));
-                    weather.wind.setDeg(Utils.getfloat("deg", windobj));
+                    //weather.wind.setDeg(Utils.getfloat("deg", windobj));
 
                     JSONObject cloudobj = Utils.getObject("clouds", jsonObject);
                     weather.clouds.setPrecipitation(Utils.getint("all", cloudobj));
@@ -95,15 +109,21 @@ public class JsonWeatherParser extends AppCompatActivity {
                     weather.currentCondition.setTemp(Utils.getint("temp",mainobj));
                     weather.currentCondition.setPreasure(Utils.getfloat("pressure",mainobj));
 
+                    DateFormat df = DateFormat.getTimeInstance();
+                    String sunrisedate = df.format(new Date(weather.location.getSunrise()));
+                    String sunsetdate = df.format(new Date(weather.location.getSunset()));
+                    String updatedate = df.format(new Date(weather.location.getLastUpdate()));
+
                     cityname.setText(weather.location.getCity());
-                    humidity.setText("Dregme: "+weather.currentCondition.getHumidity());
-                    temp.setText("Temperatura: "+weather.currentCondition.getTemp());
+                    humidity.setText("Dregme: "+weather.currentCondition.getHumidity()+"%");
+                    temp.setText("Temperatura: "+weather.currentCondition.getTemp()+"C");
                     dec.setText("Aprasymas: "+weather.currentCondition.getDescription());
-                    sunset.setText("Saule leidziasi: "+ weather.location.getSunset());
-                    sunrise.setText("Saule teka: "+ weather.location.getSunrise());
-                    preasure.setText("Slegis: "+weather.currentCondition.getPreasure());
-                    wind.setText("Vejo greitis: "+weather.wind.getSpeed());
-                    cloud.setText("Debesuotumas "+weather.clouds.getPrecipitation());
+                    sunset.setText("Saule leidziasi: "+ sunsetdate);
+                    sunrise.setText("Saule teka: "+ sunrisedate);
+                    preasure.setText("Slegis: "+weather.currentCondition.getPreasure()+"hPa");
+                    wind.setText("Vejo greitis: "+weather.wind.getSpeed()+"m/s");
+                    cloud.setText("Debesuotumas "+weather.clouds.getPrecipitation()+"%");
+                    updated.setText("Informacija atnaujinta: " + updatedate);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -112,6 +132,17 @@ public class JsonWeatherParser extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                cityname.setText("Apie pasirinkta miesta "+miestas+" duomenu nera");
+                humidity.setVisibility(View.INVISIBLE);
+                temp.setVisibility(View.INVISIBLE);
+                dec.setVisibility(View.INVISIBLE);
+                sunrise.setVisibility(View.INVISIBLE);
+                sunset.setVisibility(View.INVISIBLE);
+                preasure.setVisibility(View.INVISIBLE);
+                wind.setVisibility(View.INVISIBLE);
+                cloud.setVisibility(View.INVISIBLE);
+                iconview.setVisibility(View.INVISIBLE);
+                updated.setVisibility(View.INVISIBLE);
                 error.printStackTrace();
             }
         });
