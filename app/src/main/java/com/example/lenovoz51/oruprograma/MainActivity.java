@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v){
             miestas = city.getText().toString();
             if(miestas.toCharArray().length !=0){
-                Intent intent = new Intent(MainActivity.this,JsonWeatherParser.class);
+                Intent intent = new Intent(MainActivity.this,Forecast.class);
                 intent.putExtra("miestas",miestas);
                 MainActivity.this.startActivity(intent);
             }

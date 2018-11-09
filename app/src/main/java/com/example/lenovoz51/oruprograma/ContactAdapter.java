@@ -52,7 +52,7 @@ public class ContactAdapter extends BaseAdapter {
         TextView pavadinimas = (TextView)convertView.findViewById((R.id.aprasas));
         Weather receptas = list.get(position);
         diena.setText(receptas.time);
-        pavadinimas.setText((CharSequence) receptas.temperature);
+        pavadinimas.setText("Temperatura: "+receptas.currentCondition.getTemp()+"C");
 
 
         return convertView;

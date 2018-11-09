@@ -26,7 +26,7 @@
             android:layout_height="46dp"
             android:text="Aprasymas" />
 
-        <ImageView
+        <com.android.volley.toolbox.NetworkImageView
             android:id="@+id/ikona"
             android:layout_width="139dp"
             android:layout_height="113dp"

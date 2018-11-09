@@ -1,10 +1,12 @@
 package com.example.lenovoz51.oruprograma;
 
+import java.io.Serializable;
+
 /**
  * Created by Lenovo Z51 on 2018-10-07.
  */
 
-public class CurrentCondition {
+public class CurrentCondition implements Serializable {
     private int weatherId;
     private String condition;
     private String description;

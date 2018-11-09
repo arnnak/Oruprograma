@@ -71,6 +71,7 @@ import java.util.List;
                             location.setCity(Utils.getString("name", cityObj));
                             weather.location = location;
 
+                            name.setText(weather.location.getCity()+", "+weather.location.getCountry());
                             JSONArray jsonArray = jsonObject.getJSONArray("weather");
                             JSONObject weatObj = jsonArray.getJSONObject(0);
                             weather.currentCondition.setWeatherId(Utils.getint("id", weatObj));
@@ -96,16 +97,6 @@ import java.util.List;
 
 
                             forecast.add(weather);
-                            /*cityname.setText(weather.location.getCity() + ", " + weather.location.getCountry());
-                            humidity.setText("Dregme: " + weather.currentCondition.getHumidity() + "%");
-                            temp.setText("Temperatura: " + weather.currentCondition.getTemp() + "C");
-                            dec.setText("Aprasymas: " + weather.currentCondition.getDescription());
-                            sunset.setText("Saule leidziasi: " + sunsetdate);
-                            sunrise.setText("Saule teka: " + sunrisedate);
-                            preasure.setText("Slegis: " + weather.currentCondition.getPreasure() + "hPa");
-                            wind.setText("Vejo greitis: " + weather.wind.getSpeed() + "m/s");
-                            cloud.setText("Debesuotumas " + weather.clouds.getPrecipitation() + "%");
-                            updated.setText("Informacija atnaujinta: " + updatedate);*/
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -126,18 +117,6 @@ import java.util.List;
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    /*cityname.setText("Apie pasirinkta miesta " + miestas + " duomenu nera");
-                    humidity.setVisibility(View.INVISIBLE);
-                    temp.setVisibility(View.INVISIBLE);
-                    dec.setVisibility(View.INVISIBLE);
-                    sunrise.setVisibility(View.INVISIBLE);
-                    sunset.setVisibility(View.INVISIBLE);
-                    preasure.setVisibility(View.INVISIBLE);
-                    wind.setVisibility(View.INVISIBLE);
-                    cloud.setVisibility(View.INVISIBLE);
-                    iconview.setVisibility(View.INVISIBLE);
-                    updated.setVisibility(View.INVISIBLE);
-                    error.printStackTrace();*/
                     name.setText("Apie pasirinkta miesta " + miestas + " duomenu nera");
                     prognoze.setVisibility(View.INVISIBLE);
                 }
