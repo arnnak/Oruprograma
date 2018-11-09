@@ -1,6 +1,7 @@
 package com.example.lenovoz51.oruprograma;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -17,6 +19,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -114,7 +120,7 @@ public class JsonWeatherParser extends AppCompatActivity {
                     String sunsetdate = df.format(new Date(weather.location.getSunset()));
                     String updatedate = df.format(new Date(weather.location.getLastUpdate()));
 
-                    cityname.setText(weather.location.getCity());
+                    cityname.setText(weather.location.getCity()+", "+weather.location.getCountry());
                     humidity.setText("Dregme: "+weather.currentCondition.getHumidity()+"%");
                     temp.setText("Temperatura: "+weather.currentCondition.getTemp()+"C");
                     dec.setText("Aprasymas: "+weather.currentCondition.getDescription());
@@ -148,4 +154,24 @@ public class JsonWeatherParser extends AppCompatActivity {
         });
         AppControler.getmInstance().addToRequestQueue(jsonArrayRequest);
     }
+
+
+   /* private class DownloadImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
+
+        @Override
+        protected Bitmap doInBackground(String... strings) {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap){
+            super.onPostExecute(bitmap);
+        }
+
+        private Bitmap downloadImage (String code) throws IOException {
+            URL obj = new URL(Utils.ICON_URL+code+".png");
+            HttpURLConnection con = (HttpURLConnection)obj.openConnection();
+            con.setRequestMethod("GET");
+        }
+    }*/
 }
